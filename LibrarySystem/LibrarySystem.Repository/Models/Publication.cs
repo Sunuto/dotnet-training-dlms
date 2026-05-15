@@ -6,7 +6,7 @@ namespace LibrarySystem.Repository.Models;
 public class Publication : BaseEntity
 {
     [Key]
-    public int Id { get; set; }
+    public int Id { get; set; } 
     [Required]
     public string Name { get; set; }
     [Required]
