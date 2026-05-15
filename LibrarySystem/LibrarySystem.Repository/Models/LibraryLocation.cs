@@ -16,6 +16,6 @@ public class LibraryLocation : BaseEntity
     public string? Section { get; set; }
 
     public string? Floor { get; set; }
-    
+
     public string? Description { get; set; }
 }
