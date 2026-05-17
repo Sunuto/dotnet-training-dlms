@@ -11,7 +11,7 @@ namespace LibrarySystem.Controllers
         private readonly IPublicationBusiness _publicationBusiness;
         public PublicationController(IPublicationBusiness publicationBusiness)
         {
-            _publicationBusiness = publicationBusiness;
+            _publicationBusiness = publicationBusiness; 
         }
 
 
