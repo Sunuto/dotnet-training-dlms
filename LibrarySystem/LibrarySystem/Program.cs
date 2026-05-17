@@ -4,19 +4,16 @@ using LibrarySystem.Repository.AuthorRepository;
 
 using LibrarySystem.Business.CategoryBuisness;
 
+
+using LibrarySystem.Business.PublicationBusiness;
 using LibrarySystem.Repository.BookRepository;
-<<<<<<< HEAD
 
 using LibrarySystem.Repository.CategoryRepository;
 
 using LibrarySystem.Business.LocationBusiness;
 using LibrarySystem.Repository.LocationRepository;
-
-=======
-using LibrarySystem.Business.LocationBusiness;
-using LibrarySystem.Repository.LocationRepository;
->>>>>>> 5b26e0da46f84ee841b0c3a9a1ec02a0db72d1aa
 using LibrarySystem.Repository.Data;
+using LibrarySystem.Repository.PublicationRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,20 +25,19 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddScoped<IBookBusiness, BookBusiness>();
 builder.Services.AddScoped<ILocationBusiness, LocationBusiness>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
-<<<<<<< HEAD
-
 builder.Services.AddScoped<IAuthorBusiness, AuthorBusiness>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<ICategoryBusiness, CategoryBuisness>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ILocationRepository, LocationRepository>();
-
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-=======
 builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+builder.Services.AddScoped<IPublicationBusiness, PublicationBusiness>();
+builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
->>>>>>> 5b26e0da46f84ee841b0c3a9a1ec02a0db72d1aa
+builder.Services.AddScoped<IPublicationBusiness, PublicationBusiness>();
+builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
  options.UseSqlite(connectionString));
@@ -66,7 +62,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=Publication}/{action=AddPublication}/{id?}")
     .WithStaticAssets();
 
 

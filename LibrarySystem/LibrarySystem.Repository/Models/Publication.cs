@@ -6,16 +6,16 @@ namespace LibrarySystem.Repository.Models;
 public class Publication : BaseEntity
 {
     [Key]
-    public int Id { get; set; }
+    public int PublicationId { get; set; } 
     [Required]
-    public string Name { get; set; }
+    public string PublicationName { get; set; }
     [Required]
-    public string? Address { get; set; }
+    public string? PublicationAddress { get; set; }
     [Required]
-    public string? ContactPersonName { get; set; }
+    public string? PContactPersonName { get; set; }
     [Required]
-    public string? ContactPhone { get; set; }
+    public string? PContactPhone { get; set; }
     [Required]
-    public string? ContactEmail { get; set; }
-    public string? Website { get; set; }
+    public string? PublicationEmail { get; set; }
+    public string? PublicationWebsite { get; set; }
 }
