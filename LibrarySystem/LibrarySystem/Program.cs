@@ -1,6 +1,17 @@
+using LibrarySystem.Business.AuthorBusiness;
 using LibrarySystem.Business.BookBusiness;
+using LibrarySystem.Repository.AuthorRepository;
+
+using LibrarySystem.Business.CategoryBuisness;
+
+
 using LibrarySystem.Business.PublicationBusiness;
 using LibrarySystem.Repository.BookRepository;
+
+using LibrarySystem.Repository.CategoryRepository;
+
+using LibrarySystem.Business.LocationBusiness;
+using LibrarySystem.Repository.LocationRepository;
 using LibrarySystem.Repository.Data;
 using LibrarySystem.Repository.PublicationRepository;
 using Microsoft.EntityFrameworkCore;
@@ -12,12 +23,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 builder.Services.AddScoped<IBookBusiness, BookBusiness>();
+builder.Services.AddScoped<ILocationBusiness, LocationBusiness>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
-
+builder.Services.AddScoped<IAuthorBusiness, AuthorBusiness>();
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<ICategoryBusiness, CategoryBuisness>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
 builder.Services.AddScoped<IPublicationBusiness, PublicationBusiness>();
 builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
 
-var connectionString=  builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddScoped<IPublicationBusiness, PublicationBusiness>();
+builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
  options.UseSqlite(connectionString));

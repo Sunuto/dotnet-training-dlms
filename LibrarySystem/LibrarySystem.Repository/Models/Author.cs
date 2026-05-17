@@ -6,7 +6,7 @@ namespace LibrarySystem.Repository.Models;
 public class Author : BaseEntity
 {
     [Key]
-    public int Id { get; set; }
+    public int Id { get; set; }  
     [Required]
     public string FirstName { get; set; }
     public string MiddleName { get; set; }
