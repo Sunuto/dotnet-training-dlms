@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.Repository.Models;
 using LibrarySystem.Repository.PublicationRepository;
+using LibrarySystem.Shared.BookData;
 using LibrarySystem.Shared.PublicationData;
 using System;
 using System.Collections.Generic;
@@ -24,14 +25,12 @@ namespace LibrarySystem.Business.PublicationBusiness
             {
                 PublicationName = publication.PublicationName,
                 PublicationAddress = publication.PublicationAddress,
+                PContactPersonName = publication.PContactPersonName,
+                PContactPhone = publication.PContactPhone,
+                PublicationEmail = publication.PublicationEmail
                
             };
             return await _publicationRepository.AddPublication(publicationEntity);
-        }
-
-        public Task<bool> AddPublication(Publication publication)
-        {
-            throw new NotImplementedException();
         }
 
         public Task<bool> DeletePublication(int publicationId)
@@ -39,24 +38,56 @@ namespace LibrarySystem.Business.PublicationBusiness
             throw new NotImplementedException();
         }
 
-        public Task<bool> EditPublication(Publication publication)
+        public async Task<bool> EditPublication(PublicationDetails publication)
         {
-            throw new NotImplementedException();
+            return await _publicationRepository.EditPublication(publication);
         }
 
-        public List<PublicationDetails> GetPublicationList()
+        public async Task<PublicationDetails> GetPublicationDetails(int id)
         {
-            throw new NotImplementedException();
+            var publicationData = await _publicationRepository.GetPublicationDetails(id);
+            var publicationDetails = new PublicationDetails
+            {
+                PublicationId = publicationData.PublicationId,
+                PublicationName = publicationData.PublicationName,
+                PublicationAddress = publicationData.PublicationAddress,
+                PContactPersonName = publicationData.PContactPersonName,
+                PContactPhone = publicationData.PContactPhone,
+                PublicationEmail = publicationData.PublicationEmail
+            };
+            return publicationDetails;
         }
 
-        public Task<List<Publication>> ListPublications()
+        
+
+        public async Task<List<PublicationDetails>> GetPublicationList(string searchText)
         {
-            throw new NotImplementedException();
+            List<PublicationDetails> publicationList = new List<PublicationDetails>();
+            var publications = await _publicationRepository.GetPublicationList(searchText);
+            foreach (var publication in publications)
+            {
+                publicationList.Add(new PublicationDetails
+                { 
+                    PublicationId = publication.PublicationId,
+                    PublicationName = publication.PublicationName,
+                    PublicationAddress = publication.PublicationAddress,
+                    PContactPersonName = publication.PContactPersonName,
+                    PContactPhone = publication.PContactPhone,
+                    PublicationEmail= publication.PublicationEmail
+                });
+            }
+
+            return publicationList;
+
         }
 
-        public Task<Publication> PublicationDetails(int publicationId)
-        {
-            throw new NotImplementedException();
-        }
+
+
+
+
+
+
+
+
     }
 }
