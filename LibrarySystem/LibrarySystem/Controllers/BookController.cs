@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.Business.BookBusiness;
 using LibrarySystem.Dtos;
+using LibrarySystem.Repository.Models;
 using LibrarySystem.Shared.BookData;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -37,7 +38,7 @@ namespace LibrarySystem.Controllers
                 //    ModelState.AddModelError("Name", "Hello custom error");
                 //}
                 bool isAdded = await _bookBusiness.AddBook(book);
-                if(isAdded)
+                if (isAdded)
                 {
                     TempData["isSuccess"] = "YES";
                     TempData["Message"] = "Book added successfully";
@@ -71,7 +72,7 @@ namespace LibrarySystem.Controllers
             if (ModelState.IsValid)
             {
                 var details = await _bookBusiness.EditBooks(book);
-                if(details)
+                if (details)
                 {
                     TempData["Message"] = "Book details updated successfully";
                 }
@@ -80,7 +81,7 @@ namespace LibrarySystem.Controllers
                     TempData["isSuccess"] = "NO";
                     TempData["Message"] = "Failed to update book details";
                 }
-               return RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -107,7 +108,7 @@ namespace LibrarySystem.Controllers
             };
 
             formFields.Hobbies = hobbies;
-             
+
             return View(formFields);
         }
 

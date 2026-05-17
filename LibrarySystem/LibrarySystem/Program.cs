@@ -1,5 +1,7 @@
 using LibrarySystem.Business.BookBusiness;
 using LibrarySystem.Repository.BookRepository;
+using LibrarySystem.Business.LocationBusiness;
+using LibrarySystem.Repository.LocationRepository;
 using LibrarySystem.Repository.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,9 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 builder.Services.AddScoped<IBookBusiness, BookBusiness>();
+builder.Services.AddScoped<ILocationBusiness, LocationBusiness>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
-
-var connectionString=  builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
  options.UseSqlite(connectionString));
