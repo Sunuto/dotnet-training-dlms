@@ -4,6 +4,7 @@ using LibrarySystem.Repository.AuthorRepository;
 
 using LibrarySystem.Business.CategoryBuisness;
 
+
 using LibrarySystem.Business.PublicationBusiness;
 using LibrarySystem.Repository.BookRepository;
 
@@ -34,6 +35,9 @@ builder.Services.AddScoped<IPublicationBusiness, PublicationBusiness>();
 builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddScoped<IPublicationBusiness, PublicationBusiness>();
+builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
  options.UseSqlite(connectionString));
